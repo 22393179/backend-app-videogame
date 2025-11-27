@@ -1,20 +1,23 @@
-# Usamos Node 18 como base
+# Imagen base oficial de Node
 FROM node:18
 
-# Crear carpeta de la app
+# Directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiar package.json primero para aprovechar “cache”
+# Copiar archivos de definición de dependencias
 COPY package*.json ./
 
-# Instalar dependencias
-RUN npm install
+# Instalar dependencias (solo las necesarias en producción)
+RUN npm install --production
 
-# Copiar el código de la app
+# Copiar el resto del proyecto
 COPY . .
 
-# Exponer el puerto (asegúrate que coincide con tu .env)
-EXPOSE 4000
+# Render asigna el puerto a través de process.env.PORT
+ENV PORT=3000
 
-# Comando para iniciar el backend
+# Exponer el mismo puerto dentro del contenedor
+EXPOSE 3000
+
+# Comando final para ejecutar el servidor
 CMD ["npm", "start"]
