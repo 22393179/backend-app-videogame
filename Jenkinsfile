@@ -25,6 +25,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
+                sh 'export DOCKER_BUILDKIT=0'
                 sh 'docker build -t $IMAGE:latest .'
             }
         }
