@@ -15,6 +15,14 @@ pipeline {
             }
         }
 
+        stage('Inject Firebase Key') {
+            steps {
+                withCredentials([file(credentialsId: 'firebase_key', variable: 'FIREBASE_JSON')]) {
+                    sh 'cp $FIREBASE_JSON ./src/config/serviceAccountKey.json'
+                }
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t $IMAGE:latest .'
