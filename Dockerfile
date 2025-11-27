@@ -13,6 +13,9 @@ RUN npm install --production
 # Copiar el resto del proyecto
 COPY . .
 
+# 🔥 Asegurar que el archivo esté dentro del contenedor
+COPY src/config/serviceAccountKey.json /app/src/config/serviceAccountKey.json
+
 # Render asigna el puerto a través de process.env.PORT
 ENV PORT=3000
 
