@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-        IMAGE = "miguelmazun/backend_thelastfarm"
+        IMAGE = "mikemazun/backend_thelastfarm"
     }
 
     stages {
