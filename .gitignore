@@ -9,7 +9,6 @@ build/
 # Env vars
 .env
 
-config/
 
 # Firebase
 serviceAccountKey.json
